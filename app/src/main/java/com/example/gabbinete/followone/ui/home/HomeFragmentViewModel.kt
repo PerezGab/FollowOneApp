@@ -3,16 +3,18 @@ package com.example.gabbinete.followone.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.example.gabbinete.followone.entities.Driver
 import com.example.gabbinete.followone.entities.DriverStandings
 import com.example.gabbinete.followone.repo.Repository
+import com.example.gabbinete.followone.repo.toDomainDriver
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class HomeFragmentViewModel(private val repo: Repository): ViewModel() {
 
-    private val _driver = MutableStateFlow<DriverStandings?>(null)
-    val driver: StateFlow<DriverStandings?> = _driver
+    private val _driver = MutableStateFlow<Driver?>(null)
+    val driver= _driver.asStateFlow()
 
     init {
         setLeaderName()
@@ -20,8 +22,7 @@ class HomeFragmentViewModel(private val repo: Repository): ViewModel() {
 
     private fun setLeaderName() {
         viewModelScope.launch {
-            val driversList = repo.getCurrentSeasonDriverStandings()[0].driverStandings
-            _driver.value = driversList?.get(0)
+            _driver.value = (repo.getCurrentSeasonDriverStandings()[0].standings[0] as DriverStandings).driver.toDomainDriver()
         }
     }
 }

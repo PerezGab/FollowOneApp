@@ -8,10 +8,12 @@ class Repository(private val remoteDataSource: RemoteDataSource) {
 
     suspend fun getCurrentDrivers(): List<Driver> = remoteDataSource.getCurrentDrivers()
     suspend fun getCurrentSeasonDriverStandings(): List<SeasonStandings> = remoteDataSource.getCurrentSeasonDriverStandings()
+    suspend fun getCurrentSeasonConstructorStandings(): List<SeasonStandings> = remoteDataSource.getCurrentSeasonConstructorStandings()
 
 }
 
 interface RemoteDataSource {
     suspend fun getCurrentDrivers(): List<Driver>
     suspend fun getCurrentSeasonDriverStandings(): List<SeasonStandings>
+    suspend fun getCurrentSeasonConstructorStandings(): List<SeasonStandings>
 }

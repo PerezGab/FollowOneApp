@@ -11,7 +11,7 @@ data class RaceResult(
     val positionText: String,
     val points: String,
     @Json(name = "Driver") val networkDriver: NetworkDriver,
-    @Json(name = "Constructor") val constructor: Constructor,
+    @Json(name = "Constructor") val constructor: NetworkConstructor,
     val grid: String,
     val laps: String,
     val status: String,

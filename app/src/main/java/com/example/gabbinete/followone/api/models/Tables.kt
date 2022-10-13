@@ -14,7 +14,7 @@ data class DriverTable(
 @Parcelize
 data class ConstructorTable(
     val season: String,
-    @Json(name = "Constructors") val constructors: List<Constructor>
+    @Json(name = "Constructors") val constructors: List<NetworkConstructor>
 ) : Parcelable
 
 @Parcelize

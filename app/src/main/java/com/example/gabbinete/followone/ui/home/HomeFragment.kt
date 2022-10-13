@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         val viewModel: HomeFragmentViewModel by viewModels { vmFactory }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.driver.collect { binding.textView.text = it?.driver?.familyName }
+            viewModel.driver.collect { binding.textView.text = it?.familyName }
         }
 
 

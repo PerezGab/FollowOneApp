@@ -11,5 +11,5 @@ data class NetworkDriverStanding(
     val points: String,
     val wins: String,
     @Json(name = "Driver") val networkDriver: NetworkDriver,
-    @Json(name = "Constructors") val constructors: List<Constructor>
+    @Json(name = "Constructors") val constructors: List<NetworkConstructor>
 ) : Parcelable

@@ -10,5 +10,5 @@ data class NetworkConstructorStanding(
     val positionText: String,
     val points: String,
     val wins: String,
-    @Json (name = "Constructor") val constructor: Constructor
+    @Json (name = "Constructor") val constructor: NetworkConstructor
 ) : Parcelable

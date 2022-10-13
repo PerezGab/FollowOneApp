@@ -1,5 +1,6 @@
 package com.example.gabbinete.followone.api
 
+import com.example.gabbinete.followone.api.models.ConstructorStandingsResponse
 import com.example.gabbinete.followone.api.models.DriverResponse
 import com.example.gabbinete.followone.api.models.DriverStandingsResponse
 import retrofit2.http.GET
@@ -10,4 +11,7 @@ interface ApiService {
 
     @GET("current/driverStandings")
     suspend fun getCurrentSeasonDriverStandings(): DriverStandingsResponse
+
+    @GET("current/constructorStandings")
+    suspend fun getCurrentSeasonConstructorStandings(): ConstructorStandingsResponse
 }

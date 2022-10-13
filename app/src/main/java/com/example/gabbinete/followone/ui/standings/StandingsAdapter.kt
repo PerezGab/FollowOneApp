@@ -4,24 +4,20 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gabbinete.followone.databinding.StandingListItemBinding
 import com.example.gabbinete.followone.entities.ConstructorStandings
 import com.example.gabbinete.followone.entities.DriverStandings
-import com.example.gabbinete.followone.entities.SeasonStandings
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.example.gabbinete.followone.entities.Standings
 
 private const val TYPE_DRIVER = 1
 private const val TYPE_CONSTRUCTOR = 2
 
-class StandingsAdapter() : ListAdapter<DataItem, RecyclerView.ViewHolder>(ItemDiffCallback()) {
+class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val adapterScope = CoroutineScope(Dispatchers.Default)
+    private val list = mutableListOf<Standings>()
+
+    override fun getItemCount(): Int = list.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -32,32 +28,22 @@ class StandingsAdapter() : ListAdapter<DataItem, RecyclerView.ViewHolder>(ItemDi
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val item = list[position]
         when (holder) {
             is DriverStandingsViewHolder -> {
-                val item = getItem(position) as DataItem.DriverStandingsItem
-                holder.bind(item.driverStandings)
+                holder.bind(item as DriverStandings)
             }
             is ConstructorStandingsViewHolder -> {
-                val item = getItem(position) as DataItem.ConstructorStandingsItem
-                holder.bind(item.constructorStandings)
+                holder.bind(item as ConstructorStandings)
             }
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)) {
-            is DataItem.DriverStandingsItem -> TYPE_DRIVER
-            is DataItem.ConstructorStandingsItem -> TYPE_CONSTRUCTOR
+        return when (list[position]) {
+            is DriverStandings -> TYPE_DRIVER
+            is ConstructorStandings -> TYPE_CONSTRUCTOR
             else -> throw IllegalArgumentException("Invalid item type")
-        }
-    }
-
-    fun showRecyclerData(standing: List<SeasonStandings>) {
-        adapterScope.launch(Dispatchers.Default) {
-            val data = standing[0].driverStandings?.map { DataItem.DriverStandingsItem(it) }
-            withContext(Dispatchers.Main) {
-                submitList(data)
-            }
         }
     }
 
@@ -98,30 +84,10 @@ class StandingsAdapter() : ListAdapter<DataItem, RecyclerView.ViewHolder>(ItemDi
             }
         }
     }
-}
 
-class ItemDiffCallback : DiffUtil.ItemCallback<DataItem>() {
-    override fun areItemsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    @SuppressLint("DiffUtilEquals")
-    override fun areContentsTheSame(oldItem: DataItem, newItem: DataItem): Boolean {
-        return oldItem == newItem
-    }
-}
-
-sealed class DataItem {
-    abstract val id: String
-
-    data class DriverStandingsItem(val driverStandings: DriverStandings) : DataItem() {
-        override val id: String
-            get() = driverStandings.driver.driverId
-    }
-
-    data class ConstructorStandingsItem(val constructorStandings: ConstructorStandings) :
-        DataItem() {
-        override val id: String
-            get() = constructorStandings.constructor.constructorId
+    @SuppressLint("NotifyDataSetChanged")
+    fun addStandings(standingsList: List<Standings>) {
+        list.addAll(standingsList)
+        notifyDataSetChanged()
     }
 }

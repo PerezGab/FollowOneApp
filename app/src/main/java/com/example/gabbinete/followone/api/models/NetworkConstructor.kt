@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Constructor(
+data class NetworkConstructor(
     val constructorId: String,
     val url: String,
     val name: String,
