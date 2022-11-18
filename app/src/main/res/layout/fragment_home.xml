@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/next_race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/next_gp_name"
+        app:layout_constraintEnd_toStartOf="@+id/next_gp_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/next_race_text" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/next_gp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/next_race"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Next Grand Prix" />
+
+    <TextView
+        android:id="@+id/next_gp_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/next_gp_name"
+        app:layout_constraintStart_toStartOf="@+id/next_gp_name"
+        app:layout_constraintTop_toBottomOf="@+id/next_gp_name"
+        tools:text="2022-month-day" />
+
+    <TextView
+        android:id="@+id/next_gp_circuit_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/next_gp_date"
+        app:layout_constraintStart_toStartOf="@+id/next_gp_date"
+        app:layout_constraintTop_toBottomOf="@+id/next_gp_date"
+        tools:text="Next GP Circuit" />
+
+    <TextView
+        android:id="@+id/last_race_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/last_gp_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/last_race_text" />
+
+    <TextView
+        android:id="@+id/next_race_round"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Round 1"
+        app:layout_constraintEnd_toEndOf="@+id/next_race"
+        app:layout_constraintStart_toStartOf="@+id/next_race"
+        app:layout_constraintTop_toBottomOf="@+id/next_race" />
+
+    <TextView
+        android:id="@+id/last_gp_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/last_race_results"
+        app:layout_constraintTop_toBottomOf="@+id/next_gp_circuit_name"
+        tools:text="Last Grand Prix" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

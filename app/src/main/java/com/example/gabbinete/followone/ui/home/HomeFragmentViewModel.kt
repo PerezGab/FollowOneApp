@@ -3,32 +3,44 @@ package com.example.gabbinete.followone.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.gabbinete.followone.entities.Driver
-import com.example.gabbinete.followone.entities.DriverStandings
+import com.example.gabbinete.followone.entities.GrandPrix
 import com.example.gabbinete.followone.repo.Repository
-import com.example.gabbinete.followone.repo.toDomainDriver
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class HomeFragmentViewModel(private val repo: Repository): ViewModel() {
+private const val CURRENT_SEASON = "current"
 
-    private val _driver = MutableStateFlow<Driver?>(null)
-    val driver= _driver.asStateFlow()
+class HomeFragmentViewModel(private val repo: Repository) : ViewModel() {
+
+    private val _lastGP = MutableStateFlow<GrandPrix?>(null)
+    val lastGP = _lastGP.asStateFlow()
+
+    private val _nextGP = MutableStateFlow<GrandPrix?>(null)
+    val nextGP = _nextGP.asStateFlow()
 
     init {
-        setLeaderName()
+        setNextRace()
+        setLastRace()
     }
 
-    private fun setLeaderName() {
+    private fun setLastRace() {
         viewModelScope.launch {
-            _driver.value = (repo.getCurrentSeasonDriverStandings()[0].standings[0] as DriverStandings).driver.toDomainDriver()
+//            _lastGP.value = (repo.getCurrentSeasonDriverStandings()[0].standings[0] as DriverStandings).driver.toDomainDriver()
+            _lastGP.value = repo.getLastRace()
+        }
+    }
+
+    private fun setNextRace() {
+        viewModelScope.launch {
+            val nextGpItem = repo.getLastRace().round.toInt()+1
+            _nextGP.value = repo.getRace(CURRENT_SEASON, nextGpItem.toString())
         }
     }
 }
 
 @Suppress("UNCHECKED_CAST")
-class HomeFragmentViewModelFactory(private val repo: Repository): ViewModelProvider.Factory{
+class HomeFragmentViewModelFactory(private val repo: Repository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(HomeFragmentViewModel::class.java)) {
             return HomeFragmentViewModel(repo) as T

@@ -1,7 +1,7 @@
 package com.example.gabbinete.followone.api.models
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -10,11 +10,11 @@ data class RaceResult(
     val position: String,
     val positionText: String,
     val points: String,
-    @Json(name = "Driver") val networkDriver: NetworkDriver,
-    @Json(name = "Constructor") val constructor: NetworkConstructor,
+    @SerializedName("Driver") val networkDriver: NetworkDriver,
+    @SerializedName("Constructor") val constructor: NetworkConstructor,
     val grid: String,
     val laps: String,
     val status: String,
-    @Json(name = "Time") val time: Time,
-    @Json(name = "FastestLap") val fastestLap: FastestLap
+    @SerializedName("Time") val time: Time,
+    @SerializedName("FastestLap") val fastestLap: FastestLap
 ) : Parcelable

@@ -5,11 +5,16 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class NetworkDriverStanding(
+data class SprintResult(
+    val number: String,
     val position: String,
     val positionText: String,
     val points: String,
-    val wins: String,
     @SerializedName("Driver") val networkDriver: NetworkDriver,
-    @SerializedName("Constructors") val constructors: List<NetworkConstructor>
+    @SerializedName("Constructor") val constructor: NetworkConstructor,
+    val grid: String,
+    val laps: String,
+    val status: String,
+    @SerializedName("Time") val time: Time,
+    @SerializedName("FastestLap") val fastestLap: FastestLap
 ) : Parcelable

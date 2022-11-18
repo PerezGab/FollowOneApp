@@ -1,13 +1,13 @@
 package com.example.gabbinete.followone.api.models
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Location(
+data class NetworkLocation(
     val lat: String,
-    @Json(name = "long") val _long: String,
+    @SerializedName("long") val _long: String,
     val locality: String,
     val country: String
 ) : Parcelable

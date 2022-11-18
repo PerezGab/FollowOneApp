@@ -1,19 +1,18 @@
 package com.example.gabbinete.followone.api
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 private const val API_URL = "https://ergast.com/api/f1/"
 
-private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+//private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 
 private val retrofit = Retrofit.Builder()
     .client(okHttpClient())
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
+//    .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .addConverterFactory(GsonConverterFactory.create())
     .baseUrl(API_URL)
     .build()
 

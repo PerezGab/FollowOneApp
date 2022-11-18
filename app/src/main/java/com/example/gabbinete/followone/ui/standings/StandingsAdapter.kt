@@ -9,6 +9,7 @@ import com.example.gabbinete.followone.databinding.StandingListItemBinding
 import com.example.gabbinete.followone.entities.ConstructorStandings
 import com.example.gabbinete.followone.entities.DriverStandings
 import com.example.gabbinete.followone.entities.Standings
+import com.example.gabbinete.followone.repo.toDomainDriver
 
 private const val TYPE_DRIVER = 1
 private const val TYPE_CONSTRUCTOR = 2
@@ -70,6 +71,7 @@ class StandingsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: DriverStandings) {
             binding.finalPositionText.text = item.positionText
+            item.driver.toDomainDriver().mapFlag?.let { binding.flagImage.setImageResource(it) }
             binding.nameText.text = item.driver.familyName
             binding.constructorText.text = item.constructors[0].name
             binding.pointsText.text = item.points

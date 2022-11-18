@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/fragment_home.xml" value="0.1875" />
+        <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/fragment_standings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/grandprix_list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/standing_list_item.xml" value="0.67" />
+        <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/layout/switch_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/menu/navdrawer_menu.xml" value="0.1" />
         <entry key="..\:/Users/gabbo/AndroidStudioProjects/FollowOne/app/src/main/res/menu/standings_menu.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/gabbo/Documents/Sampleluchoptdemente/FollowOne/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />

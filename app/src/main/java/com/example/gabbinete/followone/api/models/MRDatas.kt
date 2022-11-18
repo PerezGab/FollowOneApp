@@ -1,7 +1,7 @@
 package com.example.gabbinete.followone.api.models
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -12,7 +12,7 @@ data class MRDataDrivers(
     val limit: String,
     val offset: String,
     val total: String,
-    @Json(name = "DriverTable") val driverTable: DriverTable
+    @SerializedName("DriverTable") val driverTable: DriverTable
 ) : Parcelable
 
 @Parcelize
@@ -23,7 +23,7 @@ data class MRDataManufacturers(
     val limit: String,
     val offset: String,
     val total: String,
-    @Json(name = "ConstructorTable") val constructorTable: ConstructorTable
+    @SerializedName("ConstructorTable") val constructorTable: ConstructorTable
 ) : Parcelable
 
 @Parcelize
@@ -34,7 +34,7 @@ data class MRDataRaces(
     val limit: String,
     val offset: String,
     val total: String,
-    @Json(name = "RaceTable") val raceTable: RaceTable
+    @SerializedName("RaceTable") val raceTable: RaceTable
 ) : Parcelable
 
 @Parcelize
@@ -45,7 +45,7 @@ data class MRDataDriverStandings(
     val limit: String,
     val offset: String,
     val total: String,
-    @Json(name = "StandingsTable") val standingsTable: DriverStandingsTable
+    @SerializedName("StandingsTable") val standingsTable: DriverStandingsTable
 ) : Parcelable
 
 @Parcelize
@@ -56,5 +56,5 @@ data class MRDataConstructorStandings(
     val limit: String,
     val offset: String,
     val total: String,
-    @Json(name = "StandingsTable") val standingsTable: ConstructorStandingsTable
+    @SerializedName("StandingsTable") val standingsTable: ConstructorStandingsTable
 ) : Parcelable

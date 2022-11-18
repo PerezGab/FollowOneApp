@@ -24,8 +24,22 @@ class HomeFragment : Fragment() {
         val viewModel: HomeFragmentViewModel by viewModels { vmFactory }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.driver.collect { binding.textView.text = it?.familyName }
+            viewModel.lastGP.collect { binding.lastGpName.text = it?.raceName }
         }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.nextGP.collect {
+                it?.let {
+                    binding.nextGpName.text = it.raceName
+                    binding.nextGpDate.text = it.date
+                    binding.nextGpCircuitName.text = it.circuit.circuitName
+                    binding.nextRaceRound.text = it.round
+                }
+            }
+        }
+
+//        val localTime = LocalDateTime.now()
+//        binding.textView.text = localTime.toString()
 
 
         return binding.root

@@ -1,13 +1,13 @@
 package com.example.gabbinete.followone.api.models
 
 import android.os.Parcelable
-import com.squareup.moshi.Json
+import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class FastestLap(
     val rank: String,
     val lap: String,
-    @Json(name = "Time") val time: Time_,
-    @Json(name = "AverageSpeed") val averageSpeed: AverageSpeed
+    @SerializedName("Time") val time: Time_,
+    @SerializedName("AverageSpeed") val averageSpeed: AverageSpeed
 ) : Parcelable

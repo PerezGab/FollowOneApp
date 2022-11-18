@@ -86,3 +86,61 @@ fun List<ConstructorStandingList>.toDomainConstructorStandingList(): List<Season
         )
     }
 }
+
+fun Race.toDomainGrandPrix(): GrandPrix {
+    return GrandPrix(
+        season = season,
+        round = round,
+        url = url,
+        raceName = raceName,
+        circuit = circuit.toDomainCircuit(),
+        date = date,
+        time = time,
+        raceResults = raceResults,
+        qualifyingResults = qualifyingResults,
+        firstPractice = firstPractice,
+        secondPractice = secondPractice,
+        thirdPractice = thirdPractice,
+        qualifying = qualifying,
+        sprint = sprint
+    )
+}
+
+fun List<Race>.toDomainGrandPrixList(): List<GrandPrix> {
+    return map {
+        GrandPrix(
+            season = it.season,
+            round = it.round,
+            url = it.url,
+            raceName = it.raceName,
+            circuit = it.circuit.toDomainCircuit(),
+            date = it.date,
+            time = it.time,
+            raceResults = it.raceResults,
+            qualifyingResults = it.qualifyingResults,
+            firstPractice = it.firstPractice,
+            secondPractice = it.secondPractice,
+            thirdPractice = it.thirdPractice,
+            qualifying = it.qualifying,
+            sprint = it.sprint
+        )
+    }
+}
+
+fun NetworkCircuit.toDomainCircuit(): Circuit {
+    return Circuit(
+        circuitId = circuitId,
+        url = url,
+        circuitName = circuitName,
+        location = location.toDomainLocation()
+    )
+}
+
+fun NetworkLocation.toDomainLocation(): Location {
+    return Location(
+        lat = lat,
+        _long = _long,
+        locality = locality,
+        country = country
+    )
+}
